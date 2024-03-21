@@ -1,8 +1,10 @@
-<!-- Creates a layout with a left-positioned sidenav and explicit content. -->
-<mat-sidenav-container class="h-full" hasBackdrop="false">
-  <mat-sidenav mode="side" opened>
+<mat-sidenav-container class="h-full" [hasBackdrop]="navConf.hasBackdrop">
+  <mat-sidenav #sidenav [mode]="navConf.mode" opened>
     <app-main-sidenav />
   </mat-sidenav>
 
-  <mat-sidenav-content> Main </mat-sidenav-content>
+  <mat-sidenav-content>
+    <app-main-header />
+  </mat-sidenav-content>
 </mat-sidenav-container>
+
