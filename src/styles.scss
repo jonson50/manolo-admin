@@ -7,10 +7,15 @@
 @import 'tailwindcss/utilities';
 
 @include mat.core();
-
+// Define light theme colors
 $manolo-admin-primary: mat.define-palette(palette.$md-mio);
 $manolo-admin-accent: mat.define-palette(palette.$accent-pat, A200, A100, A400);
 $manolo-admin-warn: mat.define-palette(palette.$warn-pat);
+
+// Define dark theme colors
+$manolo-admin-primary-dark: mat.define-palette(mat.$indigo-palette, 500);
+$manolo-admin-accent-dark: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$manolo-admin-warn-dark: mat.define-palette(mat.$red-palette);
 
 $manolo-admin-typography: mat.define-typography-config(
   $font-family: theme("fontFamily.sans")
@@ -26,9 +31,22 @@ $manolo-admin-theme: mat.define-light-theme((
   density: 0
 ));
 
+$manolo-admin-theme-dark: mat.define-dark-theme((
+  color: (
+    primary: $manolo-admin-primary,
+    accent: $manolo-admin-accent,
+    warn: $manolo-admin-warn,
+  ),
+  typography: $manolo-admin-typography,
+  density: 0
+));
+
 @include mat.all-component-themes($manolo-admin-theme);
 @include mat.all-component-typographies($manolo-admin-theme);
 
+/* * {
+  @apply transition-colors;
+} */
 
 html, body {
   @apply h-full;
@@ -36,4 +54,8 @@ html, body {
 body {
   @apply m-0;
   @apply font-sans;
+}
+
+.dark {
+  @include mat.all-component-colors($manolo-admin-theme-dark);
 }
