@@ -6,6 +6,7 @@ import { MainHeaderComponent } from '../main-header/main-header.component';
 import { BreakpointObserver, BreakpointState, LayoutModule, MediaMatcher } from '@angular/cdk/layout';
 import { Subject, takeUntil } from 'rxjs';
 import { SidenavService } from '../../services/Sidenav.service';
+import { RouterOutlet } from '@angular/router';
 
 interface NavConfig {
   mode: MatDrawerMode;
@@ -19,6 +20,7 @@ interface NavConfig {
     CommonModule,
     MatSidenavModule,
     LayoutModule,
+    RouterOutlet,
     MainSidenavComponent,
     MainHeaderComponent
   ],

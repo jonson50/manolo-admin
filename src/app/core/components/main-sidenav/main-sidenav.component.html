@@ -6,17 +6,51 @@
   </div>
 
   <mat-nav-list>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div>
+              <mat-icon fontSet="material-icons-outlined">dashboard</mat-icon>
+              Dashboards
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <a class="man-nav-link" routerLink="/dashboards/analytics" routerLinkActive="active"> Analytics </a>
+        <a class="man-nav-link" routerLink="/dashboards/finance" routerLinkActive="active"> Project </a>
+        <a class="man-nav-link" routerLink="/dashboards/project" routerLinkActive="active"> Finance </a>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div>
+              <mat-icon fontSet="material-icons-outlined">storefront</mat-icon>
+              E-Commerce
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <a class="man-nav-link" href="#">Inventory</a>
+        <a class="man-nav-link" href="#">Shopping Cart</a>
+        <a class="man-nav-link" href="#">Checkout Form</a>
+      </mat-expansion-panel>
+    </mat-accordion>
+
     <a class="man-nav-link" href="#">
       <svg class="flex-shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
         <polyline points="9 22 9 12 15 12 15 22" />
       </svg>
-      Dashboard
+      Scrumboard
     </a>
 
     <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div>
@@ -28,36 +62,50 @@
                 <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
               </svg> -->
-              <mat-icon aria-hidden="false" aria-label="group icon" fontIcon="group"></mat-icon>
-              Users
+              <mat-icon fontSet="material-icons-outlined">pages</mat-icon>
+              Pages
             </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <a class="man-nav-link" href="#"> Dashboard-2 </a>
-
         <mat-accordion>
-          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <div>Panel</div>
+                <div>Sign in</div>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <a class="man-nav-link" href="#"> Dashboard-3 </a>
+            <a class="man-nav-link" href="#">Option 1</a>
+            <a class="man-nav-link" href="#">Option 2</a>
+            <a class="man-nav-link" href="#">Option 3</a>
           </mat-expansion-panel>
         </mat-accordion>
-      </mat-expansion-panel>
-    </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div>Sign out</div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a class="man-nav-link" href="#">Option 1</a>
+            <a class="man-nav-link" href="#">Option 2</a>
+            <a class="man-nav-link" href="#">Option 3</a>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div>Forgot Password</div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a class="man-nav-link" href="#">Option 1</a>
+            <a class="man-nav-link" href="#">Option 2</a>
+            <a class="man-nav-link" href="#">Option 3</a>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <a class="man-nav-link" href="#">Maintenance</a>
 
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <div>Panel</div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <a class="man-nav-link" href="#"> Menu-4</a>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-nav-list>
