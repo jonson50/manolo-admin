@@ -41,7 +41,7 @@
         <span class="text-5xl font-bold text-gray-900 dark:text-gray-300">
           1042
         </span>
-        <span class="text-xs text-gray-500">
+        <span class="text-xs text-gray-500 ml-1">
           <div class="inline-flex gap-2 self-end rounded bg-green-100 p-1 text-green-600">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
@@ -63,7 +63,7 @@
     <!-- Card -->
     <div
       class="flex flex-col flex-auto bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
-      <div class="flex items-center justify-between w-full p-5">
+      <div class="flex items-center justify-between w-full px-5 pt-5">
         <div>
           <strong class="block text-sm font-medium text-gray-500">
             Requests
@@ -85,7 +85,7 @@
         <span class="text-5xl font-bold text-gray-900 dark:text-gray-300">
           704
         </span>
-        <span class="text-xs text-gray-500">
+        <span class="text-xs text-gray-500 ml-1">
           <div class="inline-flex gap-2 self-end rounded bg-green-100 p-1 text-green-600">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
@@ -107,7 +107,7 @@
     <!-- Card -->
     <div
       class="flex flex-col flex-auto bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
-      <div class="flex items-center justify-between w-full p-5">
+      <div class="flex items-center justify-between w-full px-5 pt-5">
         <div>
           <strong class="block text-sm font-medium text-gray-500">
             Dispatches
@@ -127,9 +127,9 @@
       </div>
       <div class="flex items-center justify-center w-full">
         <span class="text-5xl font-bold text-gray-900 dark:text-gray-300">
-          404
+          453
         </span>
-        <span class="text-xs text-gray-500">
+        <span class="text-xs text-gray-500 ml-1">
           <div class="inline-flex gap-2 self-end rounded bg-green-100 p-1 text-green-600">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
@@ -153,8 +153,8 @@
   <br />
   <!-- Card -->
   <div
-    class="flex flex-col flex-auto bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
-    <div class="flex items-center justify-between sm:mr-10 p-5">
+    class="flex flex-col flex-auto bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden mt-4">
+    <div class="flex items-center justify-between sm:mr-10 p-10">
       <div class="flex items-center justify-between w-full">
         <div>
           <div class="text-3xl font-semibold tracking-tight leading-8">
@@ -166,6 +166,11 @@
         </div>
         <div class="flex item-center">
           <!-- Buttons at the end -->
+          <mat-button-toggle-group appearance="legacy" name="clientView" aria-label="Font Style"
+            [formControl]="clientView">
+            <mat-button-toggle value="thisMonth">This month</mat-button-toggle>
+            <mat-button-toggle value="lastSemester">Last 6 months</mat-button-toggle>
+          </mat-button-toggle-group>
         </div>
       </div>
     </div>
@@ -202,8 +207,7 @@
           </strong>
         </div>
         <div class="flex item-center">
-          <button matRipple
-            class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
+          <button matRipple class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
             [matMenuTriggerFor]="menu30">
             30 days
           </button>
@@ -216,14 +220,8 @@
       </div>
       <div class="flex flex-col flex-auto mt-6 h-40">
         <!-- Donut Chart -->
-        <apx-chart class="h-full"
-          [series]="donut1.series"
-          [chart]="donut1.chart"
-          [labels]="donut1.labels"
-          [legend]="donut1.legend!"
-          [theme]="donut1.theme!"
-          [tooltip]="donut1.tooltip!"
-        ></apx-chart>
+        <apx-chart class="h-full" [series]="donut1.series" [chart]="donut1.chart" [labels]="donut1.labels"
+          [legend]="donut1.legend!" [theme]="donut1.theme!" [tooltip]="donut1.tooltip!"></apx-chart>
       </div>
       <div class="mt-4 divide-y">
         <div class="grid grid-cols-3 py-3 ng-star-inserted">
@@ -256,8 +254,7 @@
           </strong>
         </div>
         <div class="flex item-center">
-          <button matRipple
-            class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
+          <button matRipple class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
             [matMenuTriggerFor]="menu31">
             30 days
           </button>
@@ -270,14 +267,8 @@
       </div>
       <div class="flex flex-col flex-auto mt-6 h-40">
         <!-- Donut Chart -->
-        <apx-chart class="h-full"
-          [series]="donut2.series"
-          [chart]="donut2.chart"
-          [labels]="donut2.labels"
-          [legend]="donut2.legend!"
-          [theme]="donut2.theme!"
-          [tooltip]="donut2.tooltip!"
-        ></apx-chart>
+        <apx-chart class="h-full" [series]="donut2.series" [chart]="donut2.chart" [labels]="donut2.labels"
+          [legend]="donut2.legend!" [theme]="donut2.theme!" [tooltip]="donut2.tooltip!"></apx-chart>
       </div>
       <div class="mt-4 divide-y">
         <div class="grid grid-cols-3 py-3 ng-star-inserted">
@@ -310,8 +301,7 @@
           </strong>
         </div>
         <div class="flex item-center">
-          <button matRipple
-            class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
+          <button matRipple class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
             [matMenuTriggerFor]="menu32">
             30 days
           </button>
@@ -324,14 +314,8 @@
       </div>
       <div class="flex flex-col flex-auto mt-6 h-40">
         <!-- Donut Chart -->
-        <apx-chart class="h-full"
-          [series]="donut3.series"
-          [chart]="donut3.chart"
-          [labels]="donut3.labels"
-          [legend]="donut3.legend!"
-          [theme]="donut3.theme!"
-          [tooltip]="donut3.tooltip!"
-        ></apx-chart>
+        <apx-chart class="h-full" [series]="donut3.series" [chart]="donut3.chart" [labels]="donut3.labels"
+          [legend]="donut3.legend!" [theme]="donut3.theme!" [tooltip]="donut3.tooltip!"></apx-chart>
       </div>
       <div class="mt-4 divide-y">
         <div class="grid grid-cols-3 py-3 ng-star-inserted">
@@ -364,8 +348,7 @@
           </strong>
         </div>
         <div class="flex item-center">
-          <button matRipple
-            class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
+          <button matRipple class="whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-0.5 text-sm"
             [matMenuTriggerFor]="menu33">
             30 days
           </button>
@@ -378,14 +361,8 @@
       </div>
       <div class="flex flex-col flex-auto mt-6 h-40">
         <!-- Donut Chart -->
-        <apx-chart class="h-full"
-          [series]="donut4.series"
-          [chart]="donut4.chart"
-          [labels]="donut4.labels"
-          [legend]="donut4.legend!"
-          [theme]="donut4.theme!"
-          [tooltip]="donut4.tooltip!"
-        ></apx-chart>
+        <apx-chart class="h-full" [series]="donut4.series" [chart]="donut4.chart" [labels]="donut4.labels"
+          [legend]="donut4.legend!" [theme]="donut4.theme!" [tooltip]="donut4.tooltip!"></apx-chart>
       </div>
       <div class="mt-4 divide-y">
         <div class="grid grid-cols-3 py-3 ng-star-inserted">
@@ -416,10 +393,10 @@
   <!-- Card -->
   <div
     class="flex flex-col flex-auto bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden">
-    <div class="flex items-center justify-between w-full p-3">
+    <div class="flex items-center justify-between w-full px-5 pt-5">
       <div>
         <strong class="block text-sm font-medium text-gray-500">
-          Visitors vs. Page Views
+          Nord vs. South
         </strong>
       </div>
       <div class="flex item-center">
@@ -432,6 +409,50 @@
           <button mat-menu-item>3 months</button>
           <button mat-menu-item>6 months</button>
         </mat-menu>
+      </div>
+    </div>
+
+    <div class="flex items-start mt-6 mx-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
+        <div class="flex flex-col">
+          <div class="flex items-center">
+            <div class="font-medium text-secondary leading-5">Overall Score</div>
+            <mat-icon aria-hidden="true" fontIcon="information-circle"></mat-icon>
+          </div>
+          <div class="flex items-start mt-2">
+            <div class="text-4xl font-bold tracking-tight leading-none">472</div>
+            <div class="flex items-center ml-2">
+              <mat-icon class="icon-size-5 text-green-500" aria-hidden="true" fontIcon="arrow_circle_up"></mat-icon>
+              <div class="ml-1 text-md font-medium text-green-500">42.9%</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center">
+            <div class="font-medium text-secondary leading-5">Average Ratio</div>
+            <mat-icon class="ml-1.5 icon-size-4 text-hint" aria-hidden="true" fontIcon="information-circle"></mat-icon>
+          </div>
+          <div class="flex items-start mt-2">
+            <div class="text-4xl font-bold tracking-tight leading-none">45%</div>
+            <div class="flex items-center ml-2">
+              <mat-icon class="icon-size-5 text-red-500" aria-hidden="true" fontIcon="arrow_circle_down"></mat-icon>
+              <div class="ml-1 text-md font-medium text-red-500">13.1%</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center">
+            <div class="font-medium text-secondary leading-5">Predicted Ratio</div>
+            <mat-icon class="ml-1.5 icon-size-4 text-hint" aria-hidden="true" fontIcon="information-circle"></mat-icon>
+          </div>
+          <div class="flex items-start mt-2">
+            <div class="text-4xl font-bold tracking-tight leading-none">55%</div>
+            <div class="flex items-center ml-2">
+              <mat-icon class="icon-size-5 text-green-500" aria-hidden="true" fontIcon="arrow_circle_up"></mat-icon>
+              <div class="ml-1 text-md font-medium text-green-500">22.2%</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

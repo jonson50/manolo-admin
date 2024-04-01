@@ -25,4 +25,7 @@ export const chartOptions3: Partial<ChartOptions> = {
   yaxis: {
     min: 0
   },
+  xaxis: {
+    type: "datetime",
+  }
 };

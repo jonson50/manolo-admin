@@ -10,6 +10,7 @@ export const chartOptions1: Partial<ChartOptions> = {
   ],
   grid: {
     show: true,
+    borderColor: '#88898A',
     xaxis: {
       lines: {
         show: true
@@ -36,15 +37,9 @@ export const chartOptions1: Partial<ChartOptions> = {
   labels: SERIES.monthDataSeries1.dates,
   xaxis: {
     type: "datetime",
-    /* axisBorder: {
-      show: true
-    }, */
     labels: {
       show: true,
       offsetY: -15,
     },
-    /* tooltip: {
-      enabled: false,
-    } */
   },
 };

@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, DestroyRef, ViewChild, inject } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
 import {
   NgApexchartsModule,
   ChartComponent,
@@ -10,6 +12,9 @@ import { chartOptions2 } from './constants/chart-options-2';
 import { chartOptions3 } from './constants/chart-options-3';
 import { DonutOptions } from './models/donut-options';
 import { donutOptions1 } from './constants/donut-options-1';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SERIES } from './data-1';
 
 export type YRange = { min: number; max: number };
 
@@ -19,14 +24,21 @@ export type YRange = { min: number; max: number };
   imports: [
     MatMenuModule,
     MatRippleModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatButtonToggleModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.scss'
 })
 export class AnalyticsComponent {
+  private readonly destroyRef = inject(DestroyRef)
+
   @ViewChild('chart')
   chart!: ChartComponent;
+
+  clientView = new FormControl('thisMonth');
 
   public chartOptions1 = { ...chartOptions1 };
 
@@ -48,7 +60,7 @@ export class AnalyticsComponent {
     ...chartOptions3,
     series: [
       {
-        name: "STOCK",
+        name: "Visits",
         data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(), 5, { min: 10, max: 60 })
       }
     ],
@@ -59,8 +71,8 @@ export class AnalyticsComponent {
     ...chartOptions3,
     series: [
       {
-        name: "STOCK",
-        data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(), 10, { min: 10, max: 60 })
+        name: "Requests",
+        data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(), 4, { min: 10, max: 60 })
       }
     ],
     colors: ['#525BE3']
@@ -70,8 +82,8 @@ export class AnalyticsComponent {
     ...chartOptions3,
     series: [
       {
-        name: "STOCK",
-        data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(), 10, { min: 10, max: 60 })
+        name: "Dispatches",
+        data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(), 4, { min: 10, max: 60 })
       }
     ],
     colors: ['#52E3A2']
@@ -117,8 +129,26 @@ export class AnalyticsComponent {
     },
   };
 
-  constructor() {
-    //this.chartOptions
+  ngOnInit() {
+    this.clientView.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(value => {
+      if (value == 'lastSemester') {
+        this.chartOptions1.series = [
+          {
+            name: "STOCK ABC",
+            data: SERIES.monthDataSeries3.prices
+          }
+        ];
+        this.chartOptions1.labels = SERIES.monthDataSeries3.dates;
+      } else {
+        this.chartOptions1.series = [
+          {
+            name: "STOCK ABC",
+            data: SERIES.monthDataSeries1.prices
+          }
+        ];
+        this.chartOptions1.labels = SERIES.monthDataSeries1.dates;
+      }
+    })
   }
 
   public generateDayWiseTimeSeries(baseval: number, count: number, yrange: YRange) {
