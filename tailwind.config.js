@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     fontFamily: {
       ...fontFamily,
-      sans: ["Roboto", "Helvetica Neue", "sans-serif", ...fontFamily.sans]
+      sans: ["Inter var", "Helvetica Neue", "sans-serif", ...fontFamily.sans]
     },
     extend: {
       colors: {

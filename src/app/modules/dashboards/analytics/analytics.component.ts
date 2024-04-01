@@ -3,6 +3,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import {
   NgApexchartsModule,
   ChartComponent,
@@ -15,6 +16,7 @@ import { donutOptions1 } from './constants/donut-options-1';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SERIES } from './data-1';
+import { DashboardMainContainerComponent } from '../../../shared/components/dashboard-main-container/dashboard-main-container.component';
 
 export type YRange = { min: number; max: number };
 
@@ -27,7 +29,9 @@ export type YRange = { min: number; max: number };
     NgApexchartsModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    ScrollingModule,
+    DashboardMainContainerComponent
   ],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.scss'
