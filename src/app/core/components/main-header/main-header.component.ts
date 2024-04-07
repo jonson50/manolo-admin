@@ -1,8 +1,8 @@
-import { Component, Inject, Renderer2, inject } from '@angular/core';
+import { Component, Inject, Output, Renderer2, inject, EventEmitter } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { SidenavService } from '../../services/Sidenav.service';
 import { DOCUMENT } from '@angular/common';
+
 
 @Component({
   selector: 'app-main-header',
@@ -16,9 +16,11 @@ import { DOCUMENT } from '@angular/common';
 })
 export class MainHeaderComponent {
   constructor(@Inject(DOCUMENT) private document: Document) {}
-  public navService = inject(SidenavService);
   private renderer = inject(Renderer2);
   public isDarkMode = false;
+
+  @Output()
+  toggleClicked: EventEmitter<void> = new EventEmitter<void>();
 
   public switchTheme() {
     this.isDarkMode = !this.isDarkMode;

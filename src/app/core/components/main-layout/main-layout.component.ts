@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, HostListener, ViewChild, ViewEncapsulation, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/core';
 import { MatDrawerMode, MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MainSidenavComponent } from '../main-sidenav/main-sidenav.component';
 import { MainHeaderComponent } from '../main-header/main-header.component';
-import { BreakpointObserver, BreakpointState, LayoutModule, MediaMatcher } from '@angular/cdk/layout';
-import { Subject, takeUntil } from 'rxjs';
-import { SidenavService } from '../../services/Sidenav.service';
+import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { RouterOutlet } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 
@@ -26,15 +24,12 @@ interface NavConfig {
     MainHeaderComponent,
     MatIconModule
   ],
-  providers: [
-    SidenavService
-  ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainLayoutComponent {
-  public navService = inject(SidenavService);
+  private observer = inject(BreakpointObserver);
 
   private maxScreenWidth = 600
   public navConf: NavConfig = {
@@ -44,34 +39,22 @@ export class MainLayoutComponent {
 
   @ViewChild('sidenav')
   public sidenav!: MatSidenav;
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: { target: { innerWidth: number; }; }) {
-    console.log(this.sidenav)
-    if (this.sidenav) {
-      this.updateSideNav(event.target.innerWidth);
-    }
-  }
+  public isMobile = true;
 
   ngAfterViewInit(): void {
-    const innerWidth = window.innerWidth;
-    this.navService.setSidenav(this.sidenav);
-    this.updateSideNav(innerWidth)
+    this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
+      if(screenSize.matches) {
+        this.isMobile = true;
+        this.sidenav.close();
+      } else {
+        this.isMobile = false;
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+      }
+    });
   }
 
   toggleSideNav(){
     this.sidenav.toggle();
-  }
-
-  private updateSideNav(innerWidth: number) {
-    if (innerWidth < this.maxScreenWidth) {
-      this.navConf.hasBackdrop = true;
-      this.navConf.mode = 'over';
-      this.sidenav.close();
-    } else {
-      this.navConf.hasBackdrop = false;
-      this.navConf.mode = 'side';
-      this.sidenav.open();
-    }
   }
 }
