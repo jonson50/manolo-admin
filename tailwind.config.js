@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     fontFamily: {
       ...fontFamily,
-      sans: ["Inter var", "Helvetica Neue", "sans-serif", ...fontFamily.sans]
+      sans: ["Inter", "Helvetica Neue", "sans-serif", ...fontFamily.sans]
     },
     extend: {
       colors: {
@@ -77,6 +77,23 @@ module.exports = {
           a200 : "var(--contrast-a200)",
           a400 : "var(--contrast-a400)",
           a700 : "var(--contrast-a700)",
+        },
+        darkbg: {
+          status_bar: 'black',
+          app_bar: "var(--grey-900)",
+          background: '#303030',
+          hover: "var(--white-004)", // TODO(kara): check style with Material Design UX
+          card: "var(--grey-800)",
+          dialog: "var(--grey-800)",
+          disabled_button: "var(--white-012)",
+          raised_button: "var(--grey-800)",
+          focused_button: "var(--white-012)",
+          selected_button: "var(--grey-900)",
+          selected_disabled_button: "var(--grey-800)",
+          disabled_button_toggle: 'black',
+          unselected_chip: "var(--grey-700)",
+          disabled_list_option: "var(--white-012)",
+          tooltip: "var(--grey-700)",
         }
       }
     },
