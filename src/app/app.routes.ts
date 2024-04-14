@@ -9,6 +9,10 @@ export const APP_ROUTES: Routes = [
       {
         path: 'dashboards',
         loadChildren: () => import('./modules/dashboards/dashboards.routes').then(m => m.DASHBOARD_ROUTES)
+      },
+      {
+        path: 'ecommerce',
+        loadChildren: () => import('./modules/ecommerce/ecommerce.routes').then(m => m.ECOMMERCE_ROUTES)
       }
     ]
   },
