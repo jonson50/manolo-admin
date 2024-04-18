@@ -16,7 +16,8 @@ export class FinanceService {
      */
   get data$(): Observable<any>
   {
-      return this._data.asObservable();
+      //return this._data.asObservable();
+      return of(this._finance);
   }
   /**
      * Get data

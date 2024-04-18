@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ViewChild, inject } from '@angular/core';
 import { MatDrawerMode, MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MainSidenavComponent } from '../main-sidenav/main-sidenav.component';
 import { MainHeaderComponent } from '../main-header/main-header.component';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { RouterOutlet } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface NavConfig {
   mode: MatDrawerMode;
@@ -30,8 +31,8 @@ interface NavConfig {
 })
 export class MainLayoutComponent {
   private observer = inject(BreakpointObserver);
+  private readonly destroyRef = inject(DestroyRef)
 
-  private maxScreenWidth = 600
   public navConf: NavConfig = {
     hasBackdrop: false,
     mode: 'side'
@@ -39,10 +40,16 @@ export class MainLayoutComponent {
 
   @ViewChild('sidenav')
   public sidenav!: MatSidenav;
-  public isMobile = true;
+  public isMobile = false;
+
+  ngOnInit() {
+    this.isMobile = this.observer.isMatched('(max-width: 599px)');
+  }
 
   ngAfterViewInit(): void {
-    this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
+    this.observer.observe(['(max-width: 800px)'])
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe((screenSize) => {
       if(screenSize.matches) {
         this.isMobile = true;
         this.sidenav.close();

@@ -5,8 +5,52 @@
     <a class="flex-none text-xl font-semibold text-white" href="#" aria-label="Brand">Brand</a>
   </div>
 
+  @if (menuList.length) {
   <mat-nav-list>
-    <mat-accordion>
+    @for (menu of menuList; track $index) {
+      @if (menu.children.length) {
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="menu.active">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div>
+                  @if (menu.icon) {
+                    <mat-icon fontSet="material-icons-outlined">{{menu.icon}}</mat-icon>
+                  }
+                  {{menu.label}}
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            @for (submenu of menu.children; track $index) {
+              @if(submenu.children.length) {
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div>{{submenu.label}}</div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    @for (submenu2 of submenu.children; track $index) {
+                      <a class="man-nav-link" href="#">{{submenu2.label}}</a>
+                    }
+                  </mat-expansion-panel>
+                </mat-accordion>
+              } @else {
+                <a class="man-nav-link" [routerLink]="submenu.url" routerLinkActive="active"> {{submenu.label}} </a>
+              }
+            }
+          </mat-expansion-panel>
+        </mat-accordion>
+      } @else {
+        <a class="man-nav-link" href="#">
+          @if (menu.icon) {
+            <mat-icon fontSet="material-icons-outlined">{{menu.icon}}</mat-icon>
+          }
+          {{menu.label}}
+        </a>
+      }
+    }
+<!--     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -24,7 +68,7 @@
     </mat-accordion>
 
     <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div>
@@ -54,14 +98,6 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div>
-              <!-- <svg class="flex-shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg> -->
               <mat-icon fontSet="material-icons-outlined">pages</mat-icon>
               Pages
             </div>
@@ -107,7 +143,8 @@
         <a class="man-nav-link" href="#">Maintenance</a>
 
       </mat-expansion-panel>
-    </mat-accordion>
+    </mat-accordion> -->
   </mat-nav-list>
+}
 </div>
 <!-- End Sidebar -->
